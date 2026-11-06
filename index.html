@@ -456,7 +456,7 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
           <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
         <div class="addcal">
           <a class="acal off" id="rdvG" href="#" target="_blank" rel="noopener" aria-disabled="true">+ Google Agenda</a>
-          <a class="acal off" id="rdvI" href="#" download="bilan-loic-thizy.ics" aria-disabled="true">+ Apple / iCloud · Outlook</a>
+          <a class="acal off" id="rdvI" href="#" download="bilan-loic-thizy.ics" aria-disabled="true">+ Calendrier Apple</a>
         </div>
         <div class="rdv-note">Le créneau est réservé dès que je te réponds sur WhatsApp.</div></div>
       </div>
@@ -652,7 +652,7 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
  [].forEach.call(document.querySelectorAll('.fchip'),function(b){b.addEventListener('click',function(){fmt=b.dataset.f;[].forEach.call(document.querySelectorAll('.fchip'),function(x){x.setAttribute('aria-pressed',x===b?'true':'false')});update()})});
  $('calPrev').addEventListener('click',function(){view=new Date(view.getFullYear(),view.getMonth()-1,1);renderCal()});
  $('calNext').addEventListener('click',function(){view=new Date(view.getFullYear(),view.getMonth()+1,1);renderCal()});
- renderCal();renderSlots();update();})();
+ renderCal();renderSlots();update();})(); (function(){var a=document.getElementById('rdvI');if(!a)return;a.addEventListener('click',function(e){if(a.classList.contains('off'))return;e.preventDefault();var h=a.getAttribute('href');var ics=decodeURIComponent(h.slice(h.indexOf(',')+1));var u=URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);if(ios){location.href=u}else{var t=document.createElement('a');t.href=u;t.download='bilan-loic-thizy.ics';document.body.appendChild(t);t.click();t.remove()}setTimeout(function(){URL.revokeObjectURL(u)},60000)})})();
 /* Écris-moi : pop-up objectif avant WhatsApp */
 (function(){var NUM='33622997002';
  var goals=[].map.call(document.querySelectorAll('.gchip'),function(b){return b.textContent.trim()});if(!goals.length)goals=['Perdre du poids','Prendre du muscle','Me remettre en forme','Progresser dans mon sport'];
