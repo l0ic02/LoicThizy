@@ -439,7 +439,7 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
   <section class="rdv" id="rdv" aria-label="Prendre rendez-vous">
     <div class="eyebrow">Ton 1er bilan offert</div>
     <h2>Je prends mon <span class="or">RDV</span></h2>
-    <p class="rdv-lead">30 minutes, en face à face. Choisis ton jour et ton créneau : je te confirme sur WhatsApp (avec le lieu) et tu l'ajoutes à ton agenda.</p>
+    <p class="rdv-lead">45 minutes, en face à face. Choisis ton jour et ton créneau : je te confirme sur WhatsApp (avec le lieu) et tu l'ajoutes à ton agenda.</p>
     <div class="rdv-box">
       <div class="cal">
         <div class="cal-hd"><button type="button" class="cal-nav" id="calPrev" aria-label="Mois précédent">‹</button><b id="calMonth"></b><button type="button" class="cal-nav" id="calNext" aria-label="Mois suivant">›</button></div>
@@ -617,8 +617,8 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
  draw();new MutationObserver(function(){if(pt.querySelector('svg.d'))return;draw()}).observe(pt,{childList:true});})();
 /* prise de RDV */
 (function(){var grid=document.getElementById('calGrid');if(!grid)return;
- var WA='33622997002',DUR=30;
- var SLOTS={4:['17:30','18:00','18:30','19:00','19:30'],5:['17:30','18:00','18:30','19:00','19:30'],6:['09:00','09:30','10:00','10:30','11:00','11:30','12:00','12:30','13:00','13:30','14:00','14:30','15:00','15:30','16:00','16:30','17:00','17:30','18:00','18:30']};
+ var WA='33622997002',DUR=45;
+ var SLOTS={4:['17:30','18:15','19:00'],5:['17:30','18:15','19:00'],6:['09:00','09:45','10:30','11:15','12:00','12:45','13:30','14:15','15:00','15:45','16:30','17:15','18:00']};
  var MO=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],JO=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
  var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),view=new Date(now.getFullYear(),now.getMonth(),1),maxM=new Date(now.getFullYear(),now.getMonth()+2,1);
  var day=null,slot=null,fmt='présentiel';
