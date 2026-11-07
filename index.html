@@ -558,7 +558,7 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
   /* Objectif -> message WhatsApp prêt */
   var NUM='33622997002',goal='';
   var was=[].slice.call(document.querySelectorAll('a[href^="https://wa.me/'+NUM+'"]:not(#rdvWa)')).filter(function(a){return !/Écris-moi/i.test(a.textContent)});
-  function msg(){if(goal==='bilan corporel')return "Bonjour Loïc, j'aimerais faire un bilan corporel et profiter de mon bilan offert.";return goal?("Bonjour Loïc, mon objectif : "+goal+". J'aimerais profiter de mon bilan offert."):"Bonjour Loïc, j'aimerais en savoir plus sur ton accompagnement et mon bilan offert."}
+  function msg(){if(goal==='bilan corporel')return "Bonjour Loïc, j'aimerais faire mon bilan corporel offert.";return goal?("Bonjour Loïc, mon objectif : "+goal+". J'aimerais profiter de mon bilan offert."):"Bonjour Loïc, j'aimerais en savoir plus sur ton accompagnement et mon bilan offert."}
   function setWa(){var u='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg());was.forEach(function(a){a.href=u})}
   setWa();
   var gc=document.querySelectorAll('.gchip'),gn=document.getElementById('gnote');
@@ -661,7 +661,7 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
  gp.innerHTML='<div class="gp-box"><button type="button" class="gp-x" aria-label="Fermer">✕</button><div class="eyebrow">Bilan offert</div><h3>Ton <span class="or">objectif</span> ?</h3><div class="gp-chips">'+goals.map(function(g,i){return '<button type="button" aria-pressed="false"'+(i===goals.length-1?' style="grid-column:1/-1"':'')+'>'+g+'</button>'}).join('')+'</div><div class="gp-msg" id="gpMsg"></div><a class="cta" id="gpGo" href="#" target="_blank" rel="noopener">Envoyer sur WhatsApp <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a></div>';
  document.body.appendChild(gp);
  var sel='',chips=gp.querySelectorAll('.gp-chips button'),mEl=gp.querySelector('#gpMsg'),go=gp.querySelector('#gpGo');
- function msg(){if(sel==='Bilan corporel')return "Bonjour Loïc, j'aimerais faire un bilan corporel et profiter de mon bilan offert.";return (sel&&sel!=='Juste en discuter')?'Bonjour Loïc, mon objectif : '+sel.toLowerCase()+". J'aimerais profiter de mon bilan offert.":"Bonjour Loïc, j'aimerais en savoir plus sur ton accompagnement et mon bilan offert."}
+ function msg(){if(sel==='Bilan corporel')return "Bonjour Loïc, j'aimerais faire mon bilan corporel offert.";return (sel&&sel!=='Juste en discuter')?'Bonjour Loïc, mon objectif : '+sel.toLowerCase()+". J'aimerais profiter de mon bilan offert.":"Bonjour Loïc, j'aimerais en savoir plus sur ton accompagnement et mon bilan offert."}
  function upd(){[].forEach.call(chips,function(c){c.setAttribute('aria-pressed',c.textContent===sel?'true':'false')});mEl.innerHTML='Ton message : <b>« '+msg()+' »</b>';go.href='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg())}
  [].forEach.call(chips,function(c){c.addEventListener('click',function(){sel=(sel===c.textContent)?'':c.textContent;upd()})});
  function open(){var pre=document.querySelector('.gchip[aria-pressed="true"]');if(pre)sel=pre.textContent.trim();upd();gp.classList.add('on')}
