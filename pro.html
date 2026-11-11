@@ -62,7 +62,7 @@ p{margin:0}
 @media(min-width:900px){.deco{display:block;right:0}.hero{padding-top:70px}.hero .txt{max-width:640px}}
 /* bandeau défilant */
 .band{background:var(--ink);color:var(--bg);overflow:hidden;padding:14px 0;margin-top:20px}
-.band-in{display:flex;width:max-content;animation:run 26s linear infinite}
+.band-in{display:flex;width:max-content;animation:run 13s linear infinite}
 .band span{font-family:var(--display);font-weight:800;font-size:24px;text-transform:uppercase;letter-spacing:.03em;padding-right:28px;white-space:nowrap}
 .band span b{color:var(--or2);padding-left:28px}
 @keyframes run{to{transform:translateX(-50%)}}
@@ -194,7 +194,24 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 /* apparitions */
 .rv{opacity:0;transform:translateY(26px);transition:opacity .7s ease,transform .7s cubic-bezier(.2,.8,.2,1)}
 .rv.in{opacity:1;transform:none}
-@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.band-in{animation-duration:60s}}
+/* peps du haut de page */
+@keyframes pUp{from{opacity:0;transform:translateY(46px) skewY(5deg)}to{opacity:1;transform:none}}
+@keyframes pLine{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+@keyframes pShine{0%,70%{left:-60%}100%{left:130%}}
+@keyframes pFloat{0%,100%{transform:translateY(0) rotate(-2deg)}50%{transform:translateY(-14px) rotate(2deg)}}
+@keyframes pPulse{0%,100%{box-shadow:0 0 0 0 rgba(23,19,15,.35)}50%{box-shadow:0 0 0 10px rgba(23,19,15,0)}}
+.hero .rv{opacity:1;transform:none;transition:none}
+.hero .eyebrow{animation:pUp .6s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .ln{animation:pUp .8s cubic-bezier(.2,.8,.2,1) both}
+.hero h1 .ln:nth-child(1){animation-delay:.12s}.hero h1 .ln:nth-child(2){animation-delay:.26s}.hero h1 .ln:nth-child(3){animation-delay:.4s}
+.hero h1 .ln.or{position:relative;width:max-content;max-width:100%}
+.hero h1 .ln.or::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.12em;background:var(--or);border-radius:99px;transform-origin:0 50%;transform:scaleX(0);animation:pLine .7s 1.05s cubic-bezier(.2,.8,.2,1) forwards}
+.hero .lead{animation:pUp .8s .6s cubic-bezier(.2,.8,.2,1) both}
+.hero .ctas{animation:pUp .8s .75s cubic-bezier(.2,.8,.2,1) both}
+.hero .btn.dark{position:relative;overflow:hidden;animation:pPulse 2.4s 1.6s ease-in-out infinite}
+.hero .btn.dark::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:pShine 3.2s 1.4s ease-in-out infinite}
+.deco{animation:pFloat 5s ease-in-out infinite}
+@media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.band-in{animation-duration:60s}.hero *,.hero *::after,.deco{animation:none!important;transform:none!important}}
 </style>
 </head>
 <body>
