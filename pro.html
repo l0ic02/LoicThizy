@@ -436,5 +436,12 @@ renderCal();update();
 iA.addEventListener('click',function(e){if(iA.classList.contains('off'))return;e.preventDefault();var h=iA.getAttribute('href');var ics=decodeURIComponent(h.slice(h.indexOf(',')+1));var u=URL.createObjectURL(new Blob([ics],{type:'text/calendar;charset=utf-8'}));var ios=/iP(hone|ad|od)/.test(navigator.userAgent)||(navigator.platform==='MacIntel'&&navigator.maxTouchPoints>1);if(ios){location.href=u}else{var t=document.createElement('a');t.href=u;t.download='rdv-opportunite-pro.ics';document.body.appendChild(t);t.click();t.remove()}setTimeout(function(){URL.revokeObjectURL(u)},60000)});
 })();
 </script>
+<script data-goatcounter="https://loicthizy.goatcounter.com/count" async src="//gc.zgo.at/count.js"></script>
+<script>
+/* statistiques : clics importants */
+document.addEventListener('click',function(e){var a=e.target.closest('a,button');if(!a||!window.goatcounter||!window.goatcounter.count)return;var h=a.getAttribute('href')||'',n='',p=location.pathname.indexOf('pro')>=0?'pro-':'';
+if(a.id==='gpGo')n='whatsapp-message';else if(a.id==='rdvWa')n='rdv-confirme-whatsapp';else if(a.id==='rdvG'||a.id==='rdvI')n='rdv-ajout-agenda';else if(h.indexOf('pro.html')>=0)n='vers-page-pro';else if(h.indexOf('index.html')>=0)n='retour-coaching';else if(h.indexOf('wa.me')>=0)n='whatsapp';else if(h.indexOf('instagram')>=0)n='instagram';else if(h.indexOf('maps')>=0)n='itineraire-club';
+if(n)window.goatcounter.count({path:p+n,title:p+n,event:true})},true);
+</script>
 </body>
 </html>
