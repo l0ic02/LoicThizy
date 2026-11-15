@@ -210,6 +210,7 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 .hero h1 .ln:nth-child(1){animation-delay:.12s}.hero h1 .ln:nth-child(2){animation-delay:.26s}.hero h1 .ln:nth-child(3){animation-delay:.4s}
 .hero h1 .ln.or{position:relative;width:max-content;max-width:100%}
 .hero h1 .ln.or::after{content:"";position:absolute;left:0;right:0;bottom:-.06em;height:.12em;background:var(--or);border-radius:99px;transform-origin:0 50%;transform:scaleX(0);animation:pLine .7s 1.05s cubic-bezier(.2,.8,.2,1) forwards}
+.hero h1 .ln.or::after{display:none}.hero h1 .ln.or{width:auto;text-decoration:underline;text-decoration-thickness:.08em;text-underline-offset:.05em;text-decoration-skip-ink:none;-webkit-text-decoration-color:transparent;text-decoration-color:transparent;transition:text-decoration-color .6s}.hero h1 .ln.or{animation:pUp .8s .4s cubic-bezier(.2,.8,.2,1) both,pUl .6s 1.05s forwards}@keyframes pUl{to{-webkit-text-decoration-color:var(--or);text-decoration-color:var(--or)}}
 .hero .lead{animation:pUp .8s .6s cubic-bezier(.2,.8,.2,1) both}
 .hero .ctas{animation:pUp .8s .75s cubic-bezier(.2,.8,.2,1) both}
 .hero .btn.dark{position:relative;overflow:hidden;animation:pPulse 2.4s 1.6s ease-in-out infinite}
