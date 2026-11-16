@@ -246,7 +246,7 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 #pourquoi .card{flex:0 0 62%;scroll-snap-align:start}
 @media(min-width:700px){#pourquoi .card{flex-basis:32%}}
 @media(min-width:1000px){#pourquoi .grid4{display:grid!important;overflow:visible;margin-inline:0;padding:0}}
-#slots button.busy,#slots button.busy:hover{text-decoration:line-through;text-decoration-thickness:2px;opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}</style>
+#calGrid button.full{text-decoration:line-through;text-decoration-thickness:2px;opacity:.5}#slots button.busy,#slots button.busy:hover{text-decoration:line-through;text-decoration-thickness:2px;opacity:.35;cursor:not-allowed;transform:none;box-shadow:none}</style>
 </head>
 <body>
 
@@ -437,8 +437,8 @@ function renderCal(){mEl.textContent=MO[view.getMonth()]+' '+view.getFullYear();
  $('calPrev').disabled=view<=new Date(now.getFullYear(),now.getMonth(),1);$('calNext').disabled=new Date(view.getFullYear(),view.getMonth()+1,1)>=maxM;
  var first=(view.getDay()+6)%7,n=new Date(view.getFullYear(),view.getMonth()+1,0).getDate(),h='';
  for(var i=0;i<first;i++)h+='<span class="pad"></span>';
- for(var d=1;d<=n;d++){var dt=new Date(view.getFullYear(),view.getMonth(),d),ok=avail(dt).length>0;
-  h+='<button type="button" data-d="'+d+'"'+(ok?'':' disabled')+(+dt===+t0?' class="today"':'')+' aria-pressed="'+(day&&+day===+dt?'true':'false')+'" aria-label="'+JO[dt.getDay()]+' '+d+' '+MO[dt.getMonth()]+'">'+d+'</button>'}
+ for(var d=1;d<=n;d++){var dt=new Date(view.getFullYear(),view.getMonth(),d),ok=avail(dt,1).length>0,full=ok&&!avail(dt).length;
+  h+='<button type="button" data-d="'+d+'"'+(ok?'':' disabled')+((+dt===+t0||full)?' class="'+(+dt===+t0?'today ':'')+(full?'full':'')+'"':'')+' aria-pressed="'+(day&&+day===+dt?'true':'false')+'" aria-label="'+JO[dt.getDay()]+' '+d+' '+MO[dt.getMonth()]+'">'+d+'</button>'}
  grid.innerHTML=h}
 function renderSlots(){if(!day){sEl.innerHTML='';return}
  lbl.textContent='Créneaux du '+JO[day.getDay()]+' '+day.getDate()+' '+MO[day.getMonth()];
