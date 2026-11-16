@@ -217,6 +217,17 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 .hero .btn.dark::after{content:"";position:absolute;top:0;bottom:0;left:-60%;width:40%;background:linear-gradient(100deg,transparent,rgba(255,255,255,.35),transparent);transform:skewX(-20deg);animation:pShine 3.2s 1.4s ease-in-out infinite}
 .deco{animation:pFloat 5s ease-in-out infinite}
 @media(prefers-reduced-motion:reduce){.rv{opacity:1;transform:none;transition:none}.band-in{animation-duration:60s}.hero *,.hero *::after,.deco{animation:none!important;transform:none!important}}
+
+/* allègement 16/11 */
+#pour-qui .card,#pourquoi .card{padding:14px 16px;row-gap:4px;border-radius:16px}
+#pour-qui .grid3 .card{grid-template-columns:28px 1fr}
+#pour-qui .card h3,#pourquoi .card h3{font-size:22px;line-height:1}
+#pour-qui .card .n,#pourquoi .card .n{font-size:22px}
+#pour-qui .card p,#pourquoi .card p{font-size:14px;line-height:1.45}
+#pour-qui h2,#pourquoi h2{font-size:clamp(34px,7vw,64px);margin-bottom:14px}
+#pour-qui .grid3,#pourquoi .grid4{gap:8px}
+#pourquoi .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}#pourquoi .card{display:block}#pourquoi .card .n{font-size:20px;margin-bottom:6px}#pourquoi .card h3{font-size:clamp(17px,5vw,20px);margin-bottom:6px;hyphens:auto;overflow-wrap:break-word}#pourquoi .card p,#pour-qui .card p{text-align:left;hyphens:manual}
+@media(min-width:1000px){#pourquoi .grid4{grid-template-columns:repeat(4,1fr)}}
 </style>
 </head>
 <body>
@@ -300,15 +311,6 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
     <a class="club rv" href="https://www.google.com/maps/search/?api=1&amp;query=525%20route%20Nationale%206%2C%2069380%20Dommartin" target="_blank" rel="noopener"><span><small>Mon club</small><b>Shake &amp; Drink</b>525 route Nationale 6, 69380 Dommartin</span><i>Itinéraire →</i></a>
   </section>
 
-
-  <section class="wrap" id="profil">
-    <div class="eyebrow rv">Le profil qu'on cherche</div>
-    <h2 class="rv">Sérieux. <span class="or">Motivé.</span></h2>
-    <div class="chips rv">
-      <span class="chip f">Sérieux·se</span><span class="chip f">Motivé·e</span><span class="chip">Indépendant·e</span><span class="chip">Aime le sport</span><span class="chip">Aime la nutrition</span><span class="chip">Esprit d'équipe</span>
-    </div>
-    <p class="note rv"><mark>Tout profil</mark> : pas besoin d'expérience ni de diplôme, on te forme.</p>
-  </section>
 
   <section class="wrap rdv" id="rdv">
     <div class="eyebrow rv">45 minutes, au Shake &amp; Drink ou en visio</div>
