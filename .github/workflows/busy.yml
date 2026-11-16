@@ -1,0 +1,63 @@
+name: Créneaux occupés (calendrier Herbalife)
+on:
+  schedule:
+    - cron: '*/15 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: write
+concurrency: busy
+jobs:
+  busy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Lire le calendrier et écrire busy.json
+        env:
+          ICS_URL: ${{ secrets.ICLOUD_ICS_URL }}
+        run: |
+          if [ -z "$ICS_URL" ]; then echo "Pas de lien de calendrier configuré"; exit 0; fi
+          pip install -q icalendar recurring-ical-events
+          python - <<'PY'
+          import os, json, datetime as dt, urllib.request
+          import icalendar, recurring_ical_events
+          from zoneinfo import ZoneInfo
+          url = os.environ['ICS_URL'].replace('webcal://', 'https://')
+          cal = icalendar.Calendar.from_ical(urllib.request.urlopen(url, timeout=30).read())
+          paris = ZoneInfo('Europe/Paris')
+          now = dt.datetime.now(paris)
+          start = now.replace(hour=0, minute=0, second=0, microsecond=0)
+          end = start + dt.timedelta(days=75)
+          out = []
+          for ev in recurring_ical_events.of(cal).between(start, end):
+              if str(ev.get('TRANSP', '')).upper() == 'TRANSPARENT':
+                  continue
+              s = ev.get('DTSTART').dt
+              e = ev.get('DTEND').dt if ev.get('DTEND') else None
+              if isinstance(s, dt.date) and not isinstance(s, dt.datetime):
+                  e = e or (s + dt.timedelta(days=1))
+                  s = dt.datetime.combine(s, dt.time(), paris)
+                  e = dt.datetime.combine(e, dt.time(), paris)
+              else:
+                  if s.tzinfo is None: s = s.replace(tzinfo=paris)
+                  if e is None: e = s + (ev.get('DURATION').dt if ev.get('DURATION') else dt.timedelta(hours=1))
+                  if e.tzinfo is None: e = e.replace(tzinfo=paris)
+              out.append([s.astimezone(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ'), e.astimezone(dt.timezone.utc).strftime('%Y-%m-%dT%H:%M:%SZ')])
+          out.sort()
+          new = json.dumps(out, separators=(',', ':'))
+          old = open('busy.json').read().strip() if os.path.exists('busy.json') else ''
+          if new != old:
+              open('busy.json', 'w').write(new)
+              print('busy.json mis à jour :', len(out), 'créneaux occupés')
+          else:
+              print('Aucun changement')
+          PY
+          if ! git diff --quiet -- busy.json; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git add busy.json
+            git commit -m "Créneaux occupés mis à jour"
+            git push
+          fi
