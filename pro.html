@@ -228,6 +228,15 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 #pour-qui .grid3,#pourquoi .grid4{gap:8px}
 #pourquoi .grid4{grid-template-columns:repeat(2,minmax(0,1fr))}#pourquoi .card{display:block}#pourquoi .card .n{font-size:20px;margin-bottom:6px}#pourquoi .card h3{font-size:clamp(17px,5vw,20px);margin-bottom:6px;hyphens:auto;overflow-wrap:break-word}#pourquoi .card p,#pour-qui .card p{text-align:left;hyphens:manual}
 @media(min-width:1000px){#pourquoi .grid4{grid-template-columns:repeat(4,1fr)}}
+
+/* pour qui : une ligne par carte 16/11 */
+#pour-qui{padding-top:30px}
+#curieux .prose-l{margin-bottom:0}
+#pour-qui .grid3{grid-template-columns:1fr!important}
+#pour-qui .card{display:flex!important;align-items:center;gap:12px;padding:12px 16px!important;min-width:0}
+#pour-qui .card p{display:none}
+#pour-qui .card .n{font-size:clamp(16px,4.6vw,22px)!important;flex:none}
+#pour-qui .card h3{font-size:clamp(15px,4.6vw,22px)!important;white-space:nowrap;line-height:1.05}
 </style>
 </head>
 <body>
