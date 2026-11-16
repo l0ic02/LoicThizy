@@ -237,6 +237,15 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 #pour-qui .card p{display:none}
 #pour-qui .card .n{font-size:clamp(16px,4.6vw,22px)!important;flex:none}
 #pour-qui .card h3{font-size:clamp(15px,4.6vw,22px)!important;white-space:nowrap;line-height:1.05}
+
+/* pour qui alignement + raisons en carrousel 16/11 */
+#pour-qui .card .n,#pour-qui .card h3{font-size:clamp(16px,4.6vw,22px)!important;line-height:1!important;margin:0!important}
+#pour-qui .card{align-items:center!important}
+#pourquoi .grid4{display:flex!important;overflow-x:auto;scroll-snap-type:x mandatory;scroll-padding-left:16px;gap:10px;margin-inline:-16px;padding:0 16px 6px;scrollbar-width:none;-webkit-overflow-scrolling:touch}
+#pourquoi .grid4::-webkit-scrollbar{display:none}
+#pourquoi .card{flex:0 0 62%;scroll-snap-align:start}
+@media(min-width:700px){#pourquoi .card{flex-basis:32%}}
+@media(min-width:1000px){#pourquoi .grid4{display:grid!important;overflow:visible;margin-inline:0;padding:0}}
 </style>
 </head>
 <body>
@@ -420,7 +429,8 @@ var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),v
 var day=null,slot=null;
 var $=function(i){return document.getElementById(i)},mEl=$('calMonth'),sEl=$('slots'),lbl=$('slotLbl'),sum=$('rdvSum'),wa=$('rdvWa'),gA=$('rdvG'),iA=$('rdvI'),side=document.querySelector('.rdv-side'),fin=$('rdvFin');
 function p2(n){return(n<10?'0':'')+n}
-function avail(d){if(d<t0)return[];var l=(SLOTS[d.getDay()]||[]).slice();if(+d===+t0){var m=now.getHours()*60+now.getMinutes()+60;l=l.filter(function(s){return +s.slice(0,2)*60+ +s.slice(3)>m})}return l}
+if(!window.__busyReq){window.__busyReq=fetch('busy.json?t='+Date.now(),{cache:'no-store'}).then(function(r){return r.json()}).then(function(j){window.__BUSY=j.map(function(x){return[Date.parse(x[0]),Date.parse(x[1])]})}).catch(function(){})}window.__busyReq.then(function(){renderCal();renderSlots()});
+function avail(d){if(d<t0)return[];var l=(SLOTS[d.getDay()]||[]).slice().filter(function(s){var a=+parisUTC(d.getFullYear(),d.getMonth(),d.getDate(),+s.slice(0,2),+s.slice(3)),b=a+DUR*60000;return !(window.__BUSY||[]).some(function(x){return a<x[1]&&b>x[0]})});if(+d===+t0){var m=now.getHours()*60+now.getMinutes()+60;l=l.filter(function(s){return +s.slice(0,2)*60+ +s.slice(3)>m})}return l}
 function renderCal(){mEl.textContent=MO[view.getMonth()]+' '+view.getFullYear();
  $('calPrev').disabled=view<=new Date(now.getFullYear(),now.getMonth(),1);$('calNext').disabled=new Date(view.getFullYear(),view.getMonth()+1,1)>=maxM;
  var first=(view.getDay()+6)%7,n=new Date(view.getFullYear(),view.getMonth()+1,0).getDate(),h='';
