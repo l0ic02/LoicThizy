@@ -374,6 +374,26 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
 <div class="grain"></div>
 
 <style>.navr{display:flex;align-items:center;gap:8px}.ppro{background:#EEE6D8;color:#17130F;text-decoration:none;font-weight:700;font-size:14px;padding:10px 14px;border-radius:999px;white-space:nowrap}.ppro .ps{display:none}.navr .pill{white-space:nowrap}@media(max-width:420px){.ppro .pl{display:none}.ppro .ps{display:inline}}.probar{display:flex;align-items:center;justify-content:space-between;gap:12px;margin:14px auto 4px;padding:14px 18px;border-radius:16px;background:#EEE6D8;color:#17130F;text-decoration:none;max-width:520px;width:100%}.probar span{display:flex;flex-direction:column;font-weight:700;font-size:15px;line-height:1.3}.probar small{font-size:10px;letter-spacing:.18em;text-transform:uppercase;color:#D9481A;margin-bottom:3px}.probar i{font-style:normal;font-size:22px;font-weight:700;flex:none;width:38px;height:38px;border-radius:50%;background:#17130F;color:#EEE6D8;display:grid;place-items:center}
+/* pop-up bilan offert */
+button.offer{font:inherit;font-size:13px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--tx);cursor:pointer;-webkit-tap-highlight-color:transparent}
+button.offer:active{transform:scale(.97)}
+.bo{position:fixed;inset:0;z-index:220;background:rgba(7,7,8,.82);display:flex;align-items:center;justify-content:center;padding:16px;opacity:0;transition:opacity .25s}
+.bo[hidden]{display:none}.bo.on{opacity:1}
+.bo-card{position:relative;width:100%;max-width:440px;max-height:calc(100svh - 32px);overflow:auto;background:var(--panel);border:1px solid rgba(255,90,31,.45);border-radius:24px;padding:26px 18px 20px;box-shadow:0 20px 60px rgba(0,0,0,.6),0 0 40px rgba(255,90,31,.18);transform:translateY(16px);transition:transform .25s}
+.bo.on .bo-card{transform:none}
+.bo-x{position:absolute;top:12px;right:12px;width:36px;height:36px;border-radius:50%;border:1px solid var(--line);background:transparent;color:var(--tx);font-size:22px;line-height:1;cursor:pointer}
+.bo-val{display:inline-block;border:1px solid rgba(255,90,31,.6);background:rgba(255,90,31,.1);border-radius:999px;padding:5px 12px;font-size:12px;font-weight:700;letter-spacing:.1em;text-transform:uppercase;color:var(--mu)}
+.bo-val b{color:var(--or)}
+.bo h3{font-size:clamp(28px,8.4vw,44px);margin:14px 0 16px;white-space:nowrap}
+.bo-l{list-style:none;margin:0 0 20px;padding:0;display:flex;flex-direction:column;gap:11px}
+.bo-l li{display:grid;grid-template-columns:8px 1fr;column-gap:14px;align-items:start;font-size:clamp(13.5px,3.75vw,15px);line-height:1.45;color:#E7E4DF;text-align:left}
+.bo-l li::before{content:"";width:8px;height:8px;margin-top:calc(.725em - 4px);border-radius:50%;background:var(--or)}
+.bo-l b{color:var(--tx)}
+.bo-go{display:flex;justify-content:center;background:var(--or);color:var(--on-or);text-decoration:none;font-weight:700;font-size:16px;padding:15px;border-radius:14px}
+.bo-n{margin-top:10px;font-size:11px;color:var(--mu);text-align:center}
+/* allègement 24/11 b */
+.offer-row.st-cta{bottom:max(24px,env(safe-area-inset-bottom))!important}
+.hero .row{margin-top:-12px}
 /* allègement 24/11 */
 .offer-row.st-cta{position:absolute;left:50%;bottom:max(9svh,64px);transform:translateX(-50%);width:min(calc(100vw - 32px),520px);z-index:5;flex-wrap:nowrap}
 .offer-row.st-cta .offer,.offer-row.st-cta .rdvbtn{font-size:13px;padding:14px 12px}
@@ -419,7 +439,7 @@ footer{text-align:center;color:var(--mu);font-size:13px;padding-bottom:10px}
     <div class="clock rise d2" id="clock" role="img" aria-label="Heure actuelle"><span class="cap" id="cap">Chaque jour. Même heure.</span></div>
     <h1 class="rise d3" id="h1"><span class="fit">La discipline <span class="or">bat</span> la <span class="o">motivation</span></span></h1>
     <div class="row rise d4">
-      <div class="offer-row" id="offerRow"><div class="offer">Bilan offert</div><a class="rdvbtn" href="#rdv">Prendre RDV</a></div><a class="probar" href="pro.html"><span><small>Nouveau · Opportunité pro</small><b class="pb1">Un complément de revenu, à temps choisi</b></span><i>→</i></a>
+      <div class="offer-row" id="offerRow"><button type="button" class="offer" id="bilanBtn" aria-haspopup="dialog">Bilan offert</button><a class="rdvbtn" href="#rdv">Prendre RDV</a></div><a class="probar" href="pro.html"><span><small>Opportunité pro</small><b class="pb1">Un complément de revenu, à temps choisi</b></span><i>→</i></a>
       <p class="lead">J'accompagne celles et ceux qui veulent se remettre en forme, perdre du poids ou progresser, avec un principe simple : <b class="or">un petit geste, tenu chaque jour</b>.</p>
     </div>
   </header>
@@ -760,4 +780,19 @@ if(n)window.goatcounter.count({path:p+n,title:p+n,event:true})},true);
 </script>
 <script>(function(){function fit(){[].forEach.call(document.querySelectorAll('.probar .pb1'),function(b){b.style.fontSize='';var p=b.parentNode,f=parseFloat(getComputedStyle(b).fontSize);while(b.scrollWidth>p.clientWidth&&f>11){f-=.5;b.style.fontSize=f+'px'}})}fit();addEventListener('resize',fit);if(document.fonts)document.fonts.ready.then(fit)})();</script>
 <script>(function(){var m=document.querySelector('.marq'),r=m&&m.querySelector('.r1');if(!r||!('IntersectionObserver' in window))return;var i=0;r.innerHTML=r.innerHTML.replace(/([^<>\/]+)(<em>)/g,function(_,w,e){var d=(i++%6)*0.18;return '<span class="mwd" style="transition-delay:'+d.toFixed(2)+'s">'+w+'</span>'+e});m.classList.add('mw');var o=new IntersectionObserver(function(es){es.forEach(function(x){if(x.isIntersecting){m.classList.add('in');o.disconnect()}})},{threshold:.4});o.observe(m)})();</script>
+<div class="bo" id="bo" role="dialog" aria-modal="true" aria-labelledby="boT" hidden>
+  <div class="bo-card">
+    <button type="button" class="bo-x" aria-label="Fermer">×</button>
+    <div class="bo-val">Valeur 60 € · <b>offert</b></div>
+    <h3 id="boT">Ton bilan <span class="or">offert</span></h3>
+    <ul class="bo-l">
+      <li><span><b>45 min au club à Dommartin</b>, ou 30&nbsp;min à&nbsp;distance</span></li>
+      <li><span><b>Le point sur tes habitudes&nbsp;:</b> alimentation, sommeil, sport et ton énergie au&nbsp;quotidien</span></li>
+      <li><span><b>L'analyse de ta composition corporelle&nbsp;:</b> masse graisseuse, masse musculaire, hydratation, âge&nbsp;métabolique, etc.</span></li>
+      <li><span><b>Des dégustations offertes</b> pendant le bilan</span></li>
+    </ul>
+    <a class="bo-go" href="#rdv">Je réserve mon bilan</a>
+  </div>
+</div>
+<script>(function(){var b=document.getElementById('bilanBtn'),m=document.getElementById('bo');if(!b||!m)return;var last;function op(){last=document.activeElement;m.hidden=false;requestAnimationFrame(function(){m.classList.add('on')});m.querySelector('.bo-x').focus();document.documentElement.style.overflow='hidden'}function cl(){m.classList.remove('on');document.documentElement.style.overflow='';setTimeout(function(){m.hidden=true},250);if(last&&last.focus)last.focus({preventScroll:true})}b.addEventListener('click',op);m.addEventListener('click',function(e){if(e.target===m||e.target.closest('.bo-x'))cl()});m.querySelector('.bo-go').addEventListener('click',function(){cl();last=null});document.addEventListener('keydown',function(e){if(e.key==='Escape'&&!m.hidden)cl()})})();</script>
 </body></html>
