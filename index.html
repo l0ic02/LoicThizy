@@ -629,7 +629,7 @@ a.pan:hover img.ph,a.pan:focus-visible img.ph{transform:scale(1.08)}
   /* Objectif -> message WhatsApp prêt */
   var NUM='33622997002',goal='';
   var was=[].slice.call(document.querySelectorAll('a[href^="https://wa.me/'+NUM+'"]:not(#rdvWa):not(.pan)')).filter(function(a){return !/Écris-moi/i.test(a.textContent)});
-  function msg(){if(goal==='bilan corporel')return "Bonjour Loïc, j'aimerais faire mon bilan corporel offert.";return goal?("Bonjour Loïc, mon objectif : "+goal+". J'aimerais profiter de mon bilan offert."):"Bonjour Loïc, j'aimerais en savoir plus sur ton accompagnement et mon bilan offert."}
+  function msg(){if(goal==='bilan corporel')return "Bonjour Loïc, j'aimerais faire mon bilan corporel offert.";return goal?("Bonjour Loïc, mon objectif : "+goal+". J'aimerais profiter de mon bilan offert."):"Bonjour Loïc, j'aimerais faire mon bilan corporel offert."}
   function setWa(){var u='https://wa.me/'+NUM+'?text='+encodeURIComponent(msg());was.forEach(function(a){a.href=u})}
   setWa();
   var gc=document.querySelectorAll('.gchip'),gn=document.getElementById('gnote');
@@ -725,7 +725,7 @@ function avail(d,all){if(d<t0||OFF.indexOf(d.getFullYear()+'-'+('0'+(d.getMonth(
  var det='',qEl=gp.querySelector('#gpQ');
  function msg(){var B="Bonjour Loïc, ";
   if(sel==='Bilan corporel')return B+"j'aimerais faire mon bilan corporel offert"+(det&&det!=="Je ne sais pas encore"?" ("+det.toLowerCase()+")":"")+".";
-  if(!sel||sel==='Juste en discuter')return B+"j'aimerais en savoir plus sur ton accompagnement et mon bilan offert.";
+  if(!sel)return "Bonjour Loïc, j'aimerais faire mon bilan corporel offert.";if(sel==='Juste en discuter')return B+"j'aimerais en savoir plus sur ton accompagnement et mon bilan offert.";
   var m=B+"mon objectif : "+sel.toLowerCase();
   m+=".";
   if(sel==='Prendre du muscle'&&det)m+=det==='Pas encore'?" Je ne m'entraîne pas encore.":det==='3 fois ou plus'?" Je m'entraîne 3 fois ou plus par semaine.":" Je m'entraîne 1 à 2 fois par semaine.";
