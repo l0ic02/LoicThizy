@@ -1,0 +1,10 @@
+{
+  "name": "loicthizy-agenda",
+  "private": true,
+  "type": "module",
+  "description": "Service agenda (Vercel) : synchro iCloud <-> site. Le site reste sur GitHub Pages.",
+  "dependencies": {
+    "node-ical": "^0.27.6",
+    "tsdav": "^2.5.1"
+  }
+}
