@@ -1,0 +1,9 @@
+# Service agenda (Netlify) : synchro temps réel entre l'agenda iCloud de Loïc et le site.
+# Le site lui-même reste sur GitHub Pages.
+[build]
+  base = "agenda"
+  publish = "public"
+  command = "npm ci"
+[functions]
+  directory = "netlify/functions"
+  node_bundler = "esbuild"
