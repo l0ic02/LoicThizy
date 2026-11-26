@@ -290,7 +290,7 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
       <div class="q rv"><b>2</b><span>Ce que ça peut t'apporter</span></div>
       <div class="q rv"><b>3</b><span>Comment l'équipe t'accompagne</span></div>
     </div>
-    <p class="prose-l rv" style="margin-top:18px"><mark>En 1 heure</mark>, autour d'un shake au club ou en visio. Sans engagement.</p>
+    <p class="prose-l rv" style="margin-top:18px"><mark>En 45 minutes</mark>, autour d'un shake au club ou en visio. Sans engagement.</p>
   </section>
 
   <section class="wrap" id="pour-qui">
@@ -331,7 +331,7 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 
 
   <section class="wrap rdv" id="rdv">
-    <div class="eyebrow rv">1 heure, au Shake &amp; Drink ou en visio</div>
+    <div class="eyebrow rv">45 minutes, au Shake &amp; Drink ou en visio</div>
     <h2 class="rv">Mon RDV <span class="or">opportunité pro</span></h2>
     <p class="rdv-lead rv">Choisis ton jour et ton créneau : je te confirme sur WhatsApp (au Shake &amp; Drink à Dommartin ou en visio), et tu l'ajoutes à ton agenda.</p>
     <div class="rdv-box rv">
@@ -424,8 +424,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
 
 /* RDV opportunité pro (mêmes créneaux que le coaching) */
 window.AGENDA_API=window.AGENDA_API||'https://loicthizy.vercel.app';var API=window.AGENDA_API;
-var grid=document.getElementById('calGrid'),DUR=60;
-var SLOTS={4:['17:30','18:30'],5:['17:30','18:30'],6:['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00']};
+var grid=document.getElementById('calGrid'),DUR=60,AFF=45; // DUR : durée bloquée ; AFF : durée annoncée
+var SLOTS={4:['18:00','19:00'],5:['18:00','19:00'],6:['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00']};
 var MO=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],JO=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
 var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),view=new Date(now.getFullYear(),now.getMonth(),1),maxM=new Date(now.getFullYear(),now.getMonth()+2,1);
 var day=null,slot=null;
@@ -451,9 +451,9 @@ function z(dt){return dt.getUTCFullYear()+p2(dt.getUTCMonth()+1)+p2(dt.getUTCDat
 function update(){var on=!!(day&&slot)&&whoOk();[wa,gA,iA].forEach(function(a){a.classList.toggle('off',!on);a.setAttribute('aria-disabled',on?'false':'true')});
  if(!on){sum.textContent=(day&&slot)?'Indique ton prénom, ton nom et ton téléphone pour confirmer.':'';return}
  var txt=JO[day.getDay()]+' '+day.getDate()+' '+MO[day.getMonth()]+' à '+slot.replace(':','h');
- sum.innerHTML='Ton RDV opportunité pro : <b>'+txt+'</b> · '+DUR+' min · Shake &amp; Drink, Dommartin ou visio';
- var st=parisUTC(day.getFullYear(),day.getMonth(),day.getDate(),+slot.slice(0,2),+slot.slice(3)),en=new Date(+st+DUR*60000);
- var title='RDV opportunité pro – Loïc Thizy',det='RDV opportunité pro de '+DUR+' min avec Loïc Thizy (présentation de l’opportunité). Contact WhatsApp : +33 6 22 99 70 02';
+ sum.innerHTML='Ton RDV opportunité pro : <b>'+txt+'</b> · '+AFF+' min · Shake &amp; Drink, Dommartin ou visio';
+ var st=parisUTC(day.getFullYear(),day.getMonth(),day.getDate(),+slot.slice(0,2),+slot.slice(3)),en=new Date(+st+AFF*60000);
+ var title='RDV opportunité pro – Loïc Thizy',det='RDV opportunité pro de '+AFF+' min avec Loïc Thizy (présentation de l’opportunité). Contact WhatsApp : +33 6 22 99 70 02';
  wa.href='https://wa.me/'+NUM+'?text='+encodeURIComponent('Bonjour Loïc, c\'est '+who().p+' '+who().n+'. Je souhaiterais réserver un RDV opportunité pro le '+txt+'. Ce créneau est-il toujours disponible ?');
  gA.href='https://calendar.google.com/calendar/render?action=TEMPLATE&text='+encodeURIComponent(title)+'&dates='+z(st)+'/'+z(en)+'&details='+encodeURIComponent(det)+'&location='+encodeURIComponent('Shake & Drink, 525 route Nationale 6, 69380 Dommartin')+'&ctz=Europe/Paris';
  var ics=['BEGIN:VCALENDAR','VERSION:2.0','PRODID:-//Loic Thizy//Pro//FR','CALSCALE:GREGORIAN','METHOD:PUBLISH','BEGIN:VEVENT','UID:'+z(st)+'-pro@l0ic02.github.io','DTSTAMP:'+z(new Date()),'DTSTART:'+z(st),'DTEND:'+z(en),'LOCATION:Shake & Drink'+String.fromCharCode(92)+', 525 route Nationale 6'+String.fromCharCode(92)+', 69380 Dommartin','SUMMARY:'+title,'DESCRIPTION:'+det.replace(/,/g,String.fromCharCode(92)+','),'BEGIN:VALARM','TRIGGER:-PT1H','ACTION:DISPLAY','DESCRIPTION:RDV opportunité pro dans 1 h','END:VALARM','END:VEVENT','END:VCALENDAR'].join(String.fromCharCode(13,10));
