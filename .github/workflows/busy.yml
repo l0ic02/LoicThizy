@@ -1,7 +1,7 @@
 name: Créneaux occupés (iCloud Herbalife + RDV Coach)
 on:
   schedule:
-    - cron: '*/15 * * * *'
+    - cron: '*/5 * * * *'
   workflow_dispatch:
 permissions:
   contents: write
