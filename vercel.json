@@ -2,12 +2,12 @@
   "redirects": [
     {
       "source": "/",
-      "destination": "https://l0ic02.github.io/LoicThizy/",
+      "destination": "https://l0ic02.github.io/",
       "permanent": false
     },
     {
       "source": "/:path((?!api/).*)",
-      "destination": "https://l0ic02.github.io/LoicThizy/:path",
+      "destination": "https://l0ic02.github.io/:path",
       "permanent": false
     }
   ],
