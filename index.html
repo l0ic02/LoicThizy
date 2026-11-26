@@ -526,7 +526,7 @@ a.pan:hover img.ph,a.pan:focus-visible img.ph{transform:scale(1.08)}
   <section class="rdv" id="rdv" aria-label="Prendre rendez-vous">
     <div class="eyebrow">Ton bilan offert</div>
     <h2>Je prends mon <span class="or">RDV</span></h2>
-    <p class="rdv-lead"><b style="color:var(--or);font-weight:800">45 minutes</b>, en face à face. Choisis ton jour et ton créneau : je te confirme sur WhatsApp (avec le lieu) et tu l'ajoutes à ton agenda.</p>
+    <p class="rdv-lead"><b style="color:var(--or);font-weight:800">1 heure</b>, en face à face. Choisis ton jour et ton créneau : je te confirme sur WhatsApp (avec le lieu) et tu l'ajoutes à ton agenda.</p>
     <div class="rdv-box">
       <div class="cal">
         <div class="cal-hd"><button type="button" class="cal-nav" id="calPrev" aria-label="Mois précédent">‹</button><b id="calMonth"></b><button type="button" class="cal-nav" id="calNext" aria-label="Mois suivant">›</button></div>
@@ -680,8 +680,8 @@ a.pan:hover img.ph,a.pan:focus-visible img.ph{transform:scale(1.08)}
 window.AGENDA_API=window.AGENDA_API||'https://loicthizy.vercel.app';
 /* prise de RDV */
 (function(){var grid=document.getElementById('calGrid');if(!grid)return;
- var WA='33622997002',DUR=45;
- var SLOTS={4:['17:30','18:15','19:00'],5:['17:30','18:15','19:00'],6:['09:00','09:45','10:30','11:15','12:00','12:45','13:30','14:15','15:00','15:45','16:30','17:15','18:00','18:45']};
+ var WA='33622997002',DUR=60;
+ var SLOTS={4:['17:30','18:30'],5:['17:30','18:30'],6:['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00']};
  var MO=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],JO=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
  var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),view=new Date(now.getFullYear(),now.getMonth(),1),maxM=new Date(now.getFullYear(),now.getMonth()+2,1);
  var day=null,slot=null,fmt='présentiel';
@@ -774,7 +774,7 @@ if(n)window.goatcounter.count({path:p+n,title:p+n,event:true})},true);
     <div class="bo-val">Valeur 60 € · <b>offert</b></div>
     <h3 id="boT">Ton bilan <span class="or">offert</span></h3>
     <ul class="bo-l">
-      <li><span><b>45 min au club à Dommartin</b>, ou 30&nbsp;min à&nbsp;distance</span></li>
+      <li><span><b>1 h au club à Dommartin</b>, ou 30&nbsp;min à&nbsp;distance</span></li>
       <li><span><b>Le point sur tes habitudes&nbsp;:</b> alimentation, sommeil, sport et ton énergie au&nbsp;quotidien</span></li>
       <li><span><b>L'analyse de ta composition corporelle&nbsp;:</b> masse graisseuse, masse musculaire, hydratation, âge&nbsp;métabolique, etc.</span></li>
       <li><span><b>Des dégustations offertes</b> pendant le bilan</span></li>

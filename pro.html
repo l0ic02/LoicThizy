@@ -290,7 +290,7 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
       <div class="q rv"><b>2</b><span>Ce que ça peut t'apporter</span></div>
       <div class="q rv"><b>3</b><span>Comment l'équipe t'accompagne</span></div>
     </div>
-    <p class="prose-l rv" style="margin-top:18px"><mark>En 45 minutes</mark>, autour d'un shake au club ou en visio. Sans engagement.</p>
+    <p class="prose-l rv" style="margin-top:18px"><mark>En 1 heure</mark>, autour d'un shake au club ou en visio. Sans engagement.</p>
   </section>
 
   <section class="wrap" id="pour-qui">
@@ -331,7 +331,7 @@ p,.ticks li,.faq details p,.gp-msg{text-align:justify;-webkit-hyphens:auto;hyphe
 
 
   <section class="wrap rdv" id="rdv">
-    <div class="eyebrow rv">45 minutes, au Shake &amp; Drink ou en visio</div>
+    <div class="eyebrow rv">1 heure, au Shake &amp; Drink ou en visio</div>
     <h2 class="rv">Mon RDV <span class="or">opportunité pro</span></h2>
     <p class="rdv-lead rv">Choisis ton jour et ton créneau : je te confirme sur WhatsApp (au Shake &amp; Drink à Dommartin ou en visio), et tu l'ajoutes à ton agenda.</p>
     <div class="rdv-box rv">
@@ -424,8 +424,8 @@ document.addEventListener('keydown',function(e){if(e.key==='Escape')close()});
 
 /* RDV opportunité pro (mêmes créneaux que le coaching) */
 window.AGENDA_API=window.AGENDA_API||'https://loicthizy.vercel.app';var API=window.AGENDA_API;
-var grid=document.getElementById('calGrid'),DUR=45;
-var SLOTS={4:['17:30','18:15','19:00'],5:['17:30','18:15','19:00'],6:['09:00','09:45','10:30','11:15','12:00','12:45','13:30','14:15','15:00','15:45','16:30','17:15','18:00','18:45']};
+var grid=document.getElementById('calGrid'),DUR=60;
+var SLOTS={4:['17:30','18:30'],5:['17:30','18:30'],6:['09:00','10:00','11:00','12:00','13:00','14:00','15:00','16:00','17:00','18:00']};
 var MO=['janvier','février','mars','avril','mai','juin','juillet','août','septembre','octobre','novembre','décembre'],JO=['dimanche','lundi','mardi','mercredi','jeudi','vendredi','samedi'];
 var now=new Date(),t0=new Date(now.getFullYear(),now.getMonth(),now.getDate()),view=new Date(now.getFullYear(),now.getMonth(),1),maxM=new Date(now.getFullYear(),now.getMonth()+2,1);
 var day=null,slot=null;

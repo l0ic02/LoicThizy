@@ -36,7 +36,7 @@ def fetch(url):
     return urllib.request.urlopen(url, timeout=30).read()
 
 
-def ranges(raw, start, end, skip=None):
+def ranges(raw, start, end, skip=None, rdv_min=None):
     cal = icalendar.Calendar.from_ical(raw)
     recurrents = {str(c.get('UID', '')) for c in cal.walk('VEVENT') if c.get('RRULE') or c.get('RECURRENCE-ID')}
     for ev in recurring_ical_events.of(cal).between(start, end):
@@ -56,6 +56,8 @@ def ranges(raw, start, end, skip=None):
             if s.tzinfo is None: s = s.replace(tzinfo=PARIS)
             if e is None: e = s + (ev.get('DURATION').dt if ev.get('DURATION') else dt.timedelta(hours=1))
             if e.tzinfo is None: e = e.replace(tzinfo=PARIS)
+        if rdv_min and isinstance(ev.get('DTSTART').dt, dt.datetime):
+            e = s + dt.timedelta(minutes=rdv_min)          # RDV du Sheet : 60 min (RDV Coach peut dire 45)
         if e > s:
             yield s.astimezone(dt.timezone.utc), e.astimezone(dt.timezone.utc)
 
@@ -84,7 +86,7 @@ def main():
             if name == 'GOOGLE_ICS_URL':
                 ann = annules(url)
                 skip = (lambda uid, ann=ann, key=url: state_hash(key, uid) in ann) if ann else None
-            items += list(ranges(fetch(url), start, end, skip))
+            items += list(ranges(fetch(url), start, end, skip, 60 if name == 'GOOGLE_ICS_URL' else None))
             ok += 1
         except Exception as exc:  # ne jamais afficher l'URL secrète
             print(f'{name} : lecture impossible ({type(exc).__name__})')
