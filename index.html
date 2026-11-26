@@ -677,7 +677,7 @@ a.pan:hover img.ph,a.pan:focus-visible img.ph{transform:scale(1.08)}
  var col='<svg class="col tick" viewBox="0 0 20 100" aria-hidden="true"><circle cx="10" cy="32" r="8"/><circle cx="10" cy="68" r="8"/></svg>';
  var busy=false;function draw(){var t=pt.textContent.trim();if(!/^\d\d:\d\d$/.test(t))return;busy=true;pt.setAttribute('aria-label',t);pt.innerHTML=dg(+t[0])+dg(+t[1])+col+dg(+t[3])+dg(+t[4])+'<span style="position:absolute;width:1px;height:1px;overflow:hidden;clip:rect(0 0 0 0)">'+t+'</span>';busy=false}
  draw();new MutationObserver(function(){if(pt.querySelector('svg.d'))return;draw()}).observe(pt,{childList:true});})();
-window.AGENDA_API=window.AGENDA_API||'';
+window.AGENDA_API=window.AGENDA_API||'https://loicthizy.vercel.app';
 /* prise de RDV */
 (function(){var grid=document.getElementById('calGrid');if(!grid)return;
  var WA='33622997002',DUR=45;
