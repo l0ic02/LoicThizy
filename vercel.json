@@ -1,9 +1,30 @@
 {
   "redirects": [
-    { "source": "/", "destination": "https://l0ic02.github.io/LoicThizy/", "permanent": false },
-    { "source": "/:path((?!api/).*)", "destination": "https://l0ic02.github.io/LoicThizy/:path", "permanent": false }
+    {
+      "source": "/",
+      "destination": "https://l0ic02.github.io/LoicThizy/",
+      "permanent": false
+    },
+    {
+      "source": "/:path((?!api/).*)",
+      "destination": "https://l0ic02.github.io/LoicThizy/:path",
+      "permanent": false
+    }
   ],
   "headers": [
-    { "source": "/((?!api/).*)", "headers": [{ "key": "X-Robots-Tag", "value": "noindex" }] }
-  ]
+    {
+      "source": "/((?!api/).*)",
+      "headers": [
+        {
+          "key": "X-Robots-Tag",
+          "value": "noindex"
+        }
+      ]
+    }
+  ],
+  "functions": {
+    "api/mirror.mjs": {
+      "maxDuration": 60
+    }
+  }
 }
